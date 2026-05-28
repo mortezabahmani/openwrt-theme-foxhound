@@ -63,9 +63,9 @@ To set a custom background image for the login page, use the `palette.css` file.
 Locate the following variable at the top of the file:
 
 ```css
---login-wallpaper: url();
+--login-wallpaper: url(login.jpg);
 ```
-
+set your own image link or place your custom `jpg` image file with the name `login` inside the `css` folder
 
 ## 📦 Dependencies 
 
