@@ -39,7 +39,7 @@
  /* View Style */
  
  --body-bg: #16202a;
- --body-img:url(imgs/body.png);
+ --body-img:url();
  --header-primary: linear-gradient(to left, #253850, #1a2839);
  --header-border: 5px solid #182636;
  --header-shadow: 0 4px 12px #16161659;
