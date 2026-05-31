@@ -1,4 +1,4 @@
-# OpenWrt LuCI Theme: FoxHound (Beta)
+# OpenWrt LuCI Theme: FoxHound
 
 A complete overhaul of the default OpenWrt LuCI Bootstrap theme – faster, cleaner, and ready for modern devices.  
 This theme rebuilds the UI from the ground up while keeping the familiar Bootstrap core, then extends it with a professional dark dashboard, real‑time widgets, and a responsive mobile experience.
