@@ -56,7 +56,7 @@ If you prefer to keep the default filename, simply replace the existing SVG logo
 
 ### 🖼️ Login Page Wallpaper 
 
-<img width="800" height="379" alt="login" src="https://github.com/user-attachments/assets/78976315-5720-497a-b5cf-a922fc63dd33" />
+<img width="800" height="384" alt="login" src="https://github.com/user-attachments/assets/df465e7e-18a5-40cd-90ff-86ed74c45cf8" />
 
 To set a custom background image for the login page, use the `palette.css` file.
 
