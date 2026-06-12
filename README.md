@@ -36,7 +36,7 @@ This theme rebuilds the UI from the ground up while keeping the familiar Bootstr
 Run the following commands in your SSH terminal :
 
 ```bash
-wget --no-check-certificate -O /tmp/luci-theme-foxhound_v1.5.2.ipk https://github.com/fullband7/openwrt-theme-foxhound/releases/download/v1.5/luci-theme-foxhound_v1.5.2.ipk
+wget --no-check-certificate -O /tmp/luci-theme-foxhound_v1.5.2.ipk https://github.com/fullband7/openwrt-theme-foxhound/releases/download/v1.5.2/luci-theme-foxhound_v1.5.2.ipk
 opkg install /tmp/luci-theme-foxhound_v1.5.2.ipk
 rm /tmp/luci-theme-foxhound_v1.5.2.ipk
 service rpcd restart
