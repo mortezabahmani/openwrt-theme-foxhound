@@ -93,10 +93,10 @@
  --primary-color: #222222;
  --reverse-color: #ccc;
  --iface-badge: #39414e;
- --modal-bg: rgba(153, 204, 255, 0.15);
- --modal-filter: blur(5px);
- --modal-border: 1px solid rgba(115, 185, 255, 0.15);
- --modal-shadow: 0 0 3px var(--background-color-low);
+ --modal-bg: #2b3642;
+ --modal-filter:;
+ --modal-border:1px solid #26313c;
+ --modal-shadow: 0 2px 12px #11111159 !important;
  --modal-color: var(--color-cotton);
  --button-apply: #254256;
  --button-apply-border: #213c4e;
