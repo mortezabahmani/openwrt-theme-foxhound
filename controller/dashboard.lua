@@ -188,17 +188,25 @@ function action_api()
     local handle = io.popen(cmd)
     local interfaces = handle:read("*a")
     handle:close()
+
+    local ignore_patterns = {
+        "^br-", "^ifb", "^gre", "^tun", "^wg", "^phy", "^sit", "^gretap",
+        "^ip6tnl", "^tunl", "^mon%.", "^wlan", "^wifi", "^hwsim",
+        "^imq", "^teql", "^docker", "^veth", "^erspan"
+    }
+
     for iface in interfaces:gmatch("%S+") do
-        if iface ~= "lo" and not iface:match("^br-") and not iface:match("^ifb") 
-           and not iface:match("^gre") and not iface:match("^tun") 
-           and not iface:match("^wg") and not iface:match("^phy") 
-           and not iface:match("^sit") and not iface:match("^gretap")
-           and not iface:match("^ip6tnl") and not iface:match("^tunl")
-           and not iface:match("^mon%.") and not iface:match("^wlan")
-           and not iface:match("^wifi") and not iface:match("^hwsim")
-           and not iface:match("^imq") and not iface:match("^teql")
-           and not iface:match("^docker") and not iface:match("^veth")
-           and not iface:match("^erspan") then
+        local ignore = (iface == "lo")
+        if not ignore then
+            for _, pattern in ipairs(ignore_patterns) do
+                if iface:match(pattern) then
+                    ignore = true
+                    break
+                end
+            end
+        end
+
+        if not ignore then
             local carrier = false
             local carrier_file = io.open("/sys/class/net/" .. iface .. "/carrier", "r")
             if carrier_file then
