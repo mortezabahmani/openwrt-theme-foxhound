@@ -1,4 +1,4 @@
-var cpuPrev="0,0";function loadSystemInfo(){var t=L.rpc.declare({object:"system",method:"board"}),e=L.rpc.declare({object:"system",method:"info"});Promise.all([t(),e()]).then((function(t){
+var cpuPrev="0,0";function esc(t){return t?String(t).replace(/[&<>'"]/g,(function(t){return{"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[t]})):""}function loadSystemInfo(){var t=L.rpc.declare({object:"system",method:"board"}),e=L.rpc.declare({object:"system",method:"info"});Promise.all([t(),e()]).then((function(t){
 var e=t[0]||{},r=t[1]||{},a=document.getElementById("model-value");a&&e.model&&(a.textContent=e.model);var i=document.getElementById("firmware-value");i&&e.release&&e.release.description&&(i.textContent=e.release.description)
 ;var d=document.getElementById("uptime-value");d&&r.uptime&&(window._uptimeStart=r.uptime,window._uptimeLoadedAt=Date.now(),d.textContent=formatUptime(r.uptime),startUptimeTicker())}))}function formatUptime(t){
 return Math.floor(t/3600)+"h "+Math.floor(t%3600/60)+"m "+Math.floor(t%60)+"s"}function startUptimeTicker(){if(window._uptimeStart&&void 0!==window._uptimeLoadedAt){var t=document.getElementById("uptime-value");t&&(e(),setInterval(e,1e3))}
@@ -18,22 +18,22 @@ function renderNetworkWidget(t){var e="",r=t.filter((function(t){return!t.name.m
 r.forEach((function(t){
 var r=t.carrier,a=t.speed&&t.speed>0?t.speed:null,i=r?"rgba(76, 175, 80, 0.12)":"rgba(255, 255, 255, 0.03)",d=r?"rgba(76, 175, 80, 0.5)":"rgba(255, 255, 255, 0.08)",o=r?"#4CAF50":"#888",n=r?"●":"○",s=t.name.match(/wan/i)?"WAN":"LAN",l=""
 ;r&&a&&(l=a>=1e3?(a/1e3).toFixed(1)+" Gbps":a+" Mbps"),e+='<div style="background: '+i+"; border: 1px solid "+d+'; border-radius: 12px; padding: 16px; text-align: center; min-width: 100px; flex: 1;">',
-e+='<div style="font-size: 10px; text-transform: uppercase; color: #999; letter-spacing: 0.5px; margin-bottom: 6px;">'+s+"</div>",e+='<div style="font-size: 16px; color: #fff; font-weight: 700; margin-bottom: 6px;">'+t.name+"</div>",
+e+='<div style="font-size: 10px; text-transform: uppercase; color: #999; letter-spacing: 0.5px; margin-bottom: 6px;">'+s+"</div>",e+='<div style="font-size: 16px; color: #fff; font-weight: 700; margin-bottom: 6px;">'+esc(t.name)+"</div>",
 e+='<div style="font-size: 12px; color: '+o+'; font-weight: 500;">'+n+" "+(r?"Connected":"No Link")+"</div>",l&&(e+='<div style="font-size: 11px; color: #aaa; margin-top: 4px;">'+l+"</div>"),e+="</div>"})),
 e+="</div>"):e='<div style="color:#999;">No Ethernet ports found</div>',document.getElementById("network-widget").innerHTML=e}function renderWirelessWidget(t){var e=""
 ;0!==t.length?(e+='<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px;">',t.forEach((function(t){var r=t.carrier,a=r?"#42A5F5":"#888",i=r?"Active":"Down",d=r?"●":"○"
 ;e+='<div style="background: '+(r?"rgba(33, 150, 243, 0.12)":"rgba(255, 255, 255, 0.03)")+"; border: 1px solid "+(r?"rgba(33, 150, 243, 0.5)":"rgba(255, 255, 255, 0.08)")+'; border-radius: 10px; line-height:1.5; padding: 14px 18px; text-align: center; min-width: 120px; flex: 1;">',
-e+='<div style="font-size: 16px; text-transform: uppercase; color: #999; letter-spacing: 0.5px; margin-bottom: 6px;">WiFi</div>',e+='<div style="font-size: 25px; color: #fff; font-weight: 700; margin-bottom: 6px;">'+t.iface+"</div>",
+e+='<div style="font-size: 16px; text-transform: uppercase; color: #999; letter-spacing: 0.5px; margin-bottom: 6px;">WiFi</div>',e+='<div style="font-size: 25px; color: #fff; font-weight: 700; margin-bottom: 6px;">'+esc(t.iface)+"</div>",
 e+='<div style="font-size: 17px; color: '+a+'; font-weight: 500;">'+d+" "+i+"</div>",e+="</div>"})),e+="</div>",t.forEach((function(t){
 var r=Array.isArray(t.clients)?t.clients:t.clients&&"object"==typeof t.clients?Object.values(t.clients):[];if(r&&0!==r.length){var a=t.iface.replace("GHz"," GHz"),i=t.iface.startsWith("2.4")?"#edf0f1":"#C62828"
 ;e+='<div style="background:#24313e; border-radius: 12px; padding: 16px; margin-bottom: 16px;">',e+='<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">',
-e+='<span style="background: #1f7fd1; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;">'+(t.ssid||t.iface)+"</span>",
-e+='<span style="background: '+i+"; color: "+(t.iface.startsWith("2.4")?"#000":"#fff")+'; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; margin-right: 4px;">'+a+"</span>",
+e+='<span style="background: #1f7fd1; color: #fff; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;">'+esc(t.ssid||t.iface)+"</span>",
+e+='<span style="background: '+i+"; color: "+(t.iface.startsWith("2.4")?"#000":"#fff")+'; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; margin-right: 4px;">'+esc(a)+"</span>",
 e+='<span style="color: #aaa; font-size: 11px;">👥 '+t.clients.length+" clients</span>",e+="</div>",e+='<div style="overflow-x: auto;text-align:left;"><table class="table">',
 e+='<tr class="tr" style="border-bottom: 1px solid rgba(255,255,255,0.1);">',e+='<th style="color:#999; font-size:14px; padding:6px;">Hostname</th>',e+='<th style="color:#999; font-size:14px; padding:6px;">IP Address</th>',
 e+='<th style="color:#999; font-size:14px; padding:6px;">MAC</th>',e+='<th style="color:#999; font-size:14px; padding:6px;">Signal</th>',e+="</tr>",r.forEach((function(t){var r=t.signal>-50?"#4CAF50":t.signal>-70?"#FF9800":"#F44336"
-;e+='<tr class="tr" style="border-bottom: 1px solid rgba(255,255,255,0.03);">',e+='<td style="color:#fff; font-size:14px; padding:6px;">'+(t.hostname||"-")+"</td>",
-e+='<td style="color:#90CAF9; font-size:14px; padding:6px;">'+(t.ip||"-")+"</td>",e+='<td style="color:#ccc; font-size:14px; padding:6px; font-family:monospace;">'+t.mac+"</td>",
+;e+='<tr class="tr" style="border-bottom: 1px solid rgba(255,255,255,0.03);">',e+='<td style="color:#fff; font-size:14px; padding:6px;">'+esc(t.hostname||"-")+"</td>",
+e+='<td style="color:#90CAF9; font-size:14px; padding:6px;">'+esc(t.ip||"-")+"</td>",e+='<td style="color:#ccc; font-size:14px; padding:6px; font-family:monospace;">'+esc(t.mac)+"</td>",
 e+='<td style="color:'+r+'; font-size:14px; padding:6px; font-weight:600;">'+(t.signal||"?")+" dBm</td>",e+="</tr>"})),e+="</table></div></div>"}})),
 e||(e='<div style="padding:20px;text-align:center;color:#999;">No connected clients</div>'),
 document.getElementById("wireless-widget").innerHTML=e):document.getElementById("wireless-widget").innerHTML='<div style="padding:20px;text-align:center;color:#999;">No wireless radios found</div>'}function renderTempWidget(t){
