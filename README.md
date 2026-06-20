@@ -31,18 +31,18 @@ This theme rebuilds the UI from the ground up while keeping the familiar Bootstr
 - CSS custom properties (variables) are used throughout – change primary colours, border radius, shadows, or spacing in one place.  
 - No need to edit every file: all theme variables are centralised in `palette.css`.
 
-## ⬇️ Installation - OpenWrt 24.10
+## ⬇️ Installation - OpenWrt 25.12 and newer
 
 Run the following commands in your SSH terminal :
 
 ```bash
-wget --no-check-certificate -O /tmp/luci-theme-foxhound_v1.5.2.ipk https://github.com/fullband7/openwrt-theme-foxhound/releases/download/v1.5.2/luci-theme-foxhound_v1.5.2.ipk
-opkg install /tmp/luci-theme-foxhound_v1.5.2.ipk
-rm /tmp/luci-theme-foxhound_v1.5.2.ipk
+wget --no-check-certificate -O /tmp/luci-theme-foxhound_v1.5.2.apk https://github.com/fullband7/openwrt-theme-foxhound/releases/download/v1.5.2/luci-theme-foxhound_v1.5.2.apk
+apk add --allow-untrusted /tmp/luci-theme-foxhound_v1.5.2.apk
+rm /tmp/luci-theme-foxhound_v1.5.2.apk
 service rpcd restart
 ```
 
-### ⓘ  For version 25, you can download the files from the `main branch` and manually transfer them to your router (WinSCP recommended).
+### ⓘ  For older versions, you can download the files from the `main branch` and manually transfer them to your router (WinSCP recommended).
 
 
 ## How to Change the Theme Logo And Login Page Wallpaper 
@@ -55,7 +55,7 @@ Method 1 : Edit the `header.ut` File
 
 Locate and edit the `header.ut` file at:
 
-/usr/share/ucode/luci/themplate/theme/foxhound
+/usr/share/ucode/luci/template/theme/foxhound
 
 Inside this file, find the `<div>` with the class `left-head`. Look for the `<img>` tag and replace the `src` attribute with your own logo link:
 
